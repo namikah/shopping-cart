@@ -59,12 +59,14 @@ function addNewElement() {
         let selectedItemPrice = document.createElement("p");
         let selectedItemCount = document.createElement("p");
         let CartTotal = document.createElement("div");
+        selectedItemName.style.fontSize = "16px";
+        selectedItemName.style.color = "red";
         shoppingItems.classList.add("d-flex", "justify-content-left", "align-items-center")
         CartContext.classList.add("cart-context", "d-flex", "flex-column", "justify-content-center", "align-items-start")
 
         selectedItemImage.setAttribute("src", element.src);
         selectedItemName.innerText = element.name;
-        selectedItemPrice.innerText ="price: 1x" + element.price + " AZN";
+        selectedItemPrice.innerText ="price: " + element.price;
         selectedItemCount.innerText ="count: " + element.count;
 
         shoppingItems.appendChild(selectedItemImage);

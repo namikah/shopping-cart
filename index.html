@@ -32,8 +32,9 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
-            <div class="search-item col-mg-3 d-flex justify-content-start w-100 gap-5 fs-5">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0 d-flex justify-content-between w-100 align-item-center gap-5 fs-5">
+            <div class="search-item col-mg-3 gap-5 fs-5 d-flex align-items-center justify-content-center">
               <form class="d-flex">
                 <input
                   class="form-control me-2"
@@ -46,9 +47,6 @@
                 </button>
               </form>
             </div>
-            <ul
-              class="navbar-nav col-mg-9 me-auto mb-2 mb-lg-0 d-flex justify-content-end w-100 align-item-center gap-5 fs-5"
-            >
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
@@ -62,10 +60,16 @@
                   Contact
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item text-end">
                 <a class="nav-link active" aria-current="page" href="#">
                   Sign in
                 </a>
+                <ul>
+                  <li class="login-panel">
+                    <h6 class="width-username">with username</h6>
+                    <h6 class="as-guest">as guest</h6>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item nav-item-last">
                 <a class="nav-link active" aria-current="page" href="#">
@@ -93,7 +97,7 @@
             </div>
             <div class="card-body d-flex flex-column justify-content-between align-item-center">
               <h5 class="card-title">Navy Blue Coat</h5>
-              <p class="card-text">300</p>
+              <p class="card-text">300 AZN</p>
               <a href="#" class="btn btn-primary add-cart-button">Add basket</a>
             </div>
           </div>
@@ -112,7 +116,7 @@
               class="card-body d-flex flex-column justify-content-between align-item-center"
             >
               <h5 class="card-title">Claret Red Sweater</h5>
-              <p class="card-text">130</p>
+              <p class="card-text">130 AZN</p>
               <a href="#" class="btn btn-primary add-cart-button">Add basket</a>
             </div>
           </div>
@@ -131,7 +135,7 @@
               class="card-body d-flex flex-column justify-content-between align-item-center"
             >
               <h5 class="card-title">Navy Blue T-Shirt</h5>
-              <p class="card-text">30</p>
+              <p class="card-text">30 AZN</p>
               <a href="#" class="btn btn-primary add-cart-button">Add basket</a>
             </div>
           </div>
@@ -150,13 +154,16 @@
               class="card-body d-flex flex-column justify-content-between align-item-center"
             >
               <h5 class="card-title">Slim Fit Navy Suit</h5>
-              <p class="card-text">400</p>
+              <p class="card-text">400 AZN</p>
               <a href="#" class="btn btn-primary add-cart-button">Add basket</a>
             </div>
           </div>
         </div>
       </div>
     </section>
+    <div class="user-login d-flex justify-content-md-between">
+
+    </div>
     <script src="./js/index.js"></script>
   </body>
 </html>
