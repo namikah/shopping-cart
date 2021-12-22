@@ -51,6 +51,20 @@
 }
 .nav-item-last {
   position: relative;
+  &::after{
+    content: attr(data-id);
+    position: absolute;
+    text-align: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    right: -5px;
+    top: -5px;
+    border-radius: 100%;
+    background-color: red;
+    color: white;
+    font-size: 14px;
+  }
   .my-cart-list {
     transition: 0.5s;
     z-index: 1;
@@ -63,7 +77,6 @@
     height: auto;
     max-height: 800px;
     overflow-y: auto;
-    
     li {
       background-color: rgb(255, 254, 254);
       border: 1px solid rgba(0, 0, 0, 0.096);

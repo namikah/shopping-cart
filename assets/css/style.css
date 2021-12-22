@@ -71,6 +71,23 @@
   position: relative;
 }
 
+.nav-item-last::after {
+  content: attr(data-id);
+  position: absolute;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 20px;
+  height: 20px;
+  right: -5px;
+  top: -5px;
+  border-radius: 100%;
+  background-color: red;
+  color: white;
+  font-size: 14px;
+}
+
 .nav-item-last .my-cart-list {
   -webkit-transition: 0.5s;
   transition: 0.5s;

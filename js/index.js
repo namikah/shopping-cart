@@ -11,8 +11,7 @@ let myShoppingCartList = document.querySelector(".my-cart-list");
 let addcartButton = document.querySelectorAll(".add-cart-button");
 
 let cards = [];
-
-cards = readLocalStorage();
+readAllItemCount();
 addNewElement();
 
 if (localStorage.getItem("login") !== "true") {
@@ -72,6 +71,9 @@ addcartButton.forEach(item => {
         let itemCount = 1;
         let total = Number(itemPrice.substring(0, itemPrice.length - 4)) * itemCount;
 
+        // let allTotal = Number(document.querySelector(".nav-item-last").getAttribute("data-id")) + 1;
+        // document.querySelector(".nav-item-last").setAttribute("data-id", allTotal);
+
         let newCard = {
             id: unikalId,
             src: itemSrc,
@@ -93,14 +95,14 @@ addcartButton.forEach(item => {
             else
                 localStorage.setItem("Basket", JSON.stringify(cards));
             resetAll();
-            cards = readLocalStorage();
+            readAllItemCount();
             addNewElement();
 
             return;
         }
         cards.unshift(newCard);
         writeLocalStorage();
-        cards = readLocalStorage();
+        readAllItemCount();
         addNewElement();
     })
 });
@@ -130,7 +132,7 @@ function addNewElement() {
         let selectedItemID = document.createElement("p");
         let selectedItemName = document.createElement("p");
         let selectedItemPrice = document.createElement("p");
-        let selectedItemCount = document.createElement("p");
+        // let selectedItemCount = document.createElement("p");
         let selectedItemTotal = document.createElement("p");
         let closeX = document.createElement("span");
         selectedItemName.style.fontSize = "16px";
@@ -143,21 +145,21 @@ function addNewElement() {
         selectedItemImage.setAttribute("src", element.src);
         selectedItemName.innerText = element.name;
         selectedItemID.innerText = element.id;
-        selectedItemPrice.innerText = "price: " + element.price;
-        selectedItemCount.innerText = "count: " + element.count;
-        selectedItemTotal.innerText = "Total: " + element.total;
+        selectedItemPrice.innerText = "price: " + element.count + " x " + element.price;
+        // selectedItemCount.innerText = "count: " + element.count + " pieces";
+        selectedItemTotal.innerText = "Total: " + element.total + " AZN";
         shoppingItems.appendChild(selectedItemImage);
         CartContext.appendChild(selectedItemName);
         CartContext.appendChild(selectedItemID);
         CartContext.appendChild(selectedItemPrice);
-        CartContext.appendChild(selectedItemCount);
+        // CartContext.appendChild(selectedItemCount);
         CartContext.appendChild(selectedItemTotal);
         shoppingItems.appendChild(CartContext);
         shoppingItems.appendChild(closeX);
         myShoppingCartList.appendChild(shoppingItems);
 
         closeX.addEventListener("click", function (e) {
-            cards = readLocalStorage();
+            readAllItemCount();
             if (cards !== null) {
 
                 for (const item of cards) {
@@ -166,7 +168,7 @@ function addNewElement() {
                         cards.splice(index, 1);
                         writeLocalStorage();
                         resetAll();
-                        cards = readLocalStorage();
+                        readAllItemCount();
                         addNewElement();
                         return;
                     }
@@ -180,10 +182,16 @@ function addNewElement() {
 }
 
 function resetAll() {
-    while (myShoppingCartList.children[0])
+    while (myShoppingCartList.children[0]) {
         myShoppingCartList.children[0].remove();
+        readAllItemCount();
+    }
 }
-
+function readAllItemCount() {
+    cards = readLocalStorage();
+    if (cards !== null) document.querySelector(".nav-item-last").setAttribute("data-id", cards.length)
+    else{document.querySelector(".nav-item-last").setAttribute("data-id", "0")}
+}
 function isExistItem(item) {
     let isItem = cards.find(value => value.name === item.name);
     return isItem;
