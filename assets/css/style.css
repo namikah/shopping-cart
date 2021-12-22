@@ -92,6 +92,18 @@
   padding: 10px;
   width: 100%;
   list-style: none;
+  position: relative;
+}
+
+.nav-item-last .my-cart-list li .close-x {
+  font-size: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: red;
+  font-weight: 900;
+  padding-right: 10px;
+  cursor: pointer;
 }
 
 .nav-item-last .my-cart-list li a {

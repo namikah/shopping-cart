@@ -63,12 +63,24 @@
     height: auto;
     max-height: 800px;
     overflow-y: auto;
+    
     li {
       background-color: rgb(255, 254, 254);
       border: 1px solid rgba(0, 0, 0, 0.096);
       padding: 10px;
       width: 100%;
       list-style: none;
+      position: relative;
+      .close-x{
+        font-size: 20px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        color: red;
+        font-weight: 900;
+        padding-right: 10px;
+        cursor: pointer;
+      }
       a {
         width: 300px;
       }

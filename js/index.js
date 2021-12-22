@@ -10,15 +10,21 @@ let navbar = document.querySelector("#navbar-header");
 let myShoppingCartList = document.querySelector(".my-cart-list");
 let addcartButton = document.querySelectorAll(".add-cart-button");
 
+let cards = [];
+
+cards = readLocalStorage();
+addNewElement();
+
 if (localStorage.getItem("login") !== "true") {
     btnEnter.addEventListener("click", function (e) {
         e.preventDefault();
         if (username.value === "admin" && password.value === "123") {
             localStorage.setItem("login", "true");
             userLogin.style.display = "none";
+            signIn.style.display = "none";
+            signOut.style.display = "block";
             navbar.style.display = "block";
             buyItems.style.display = "block";
-            signIn.style.display = "none";
         }
         else {
             return;
@@ -28,28 +34,24 @@ if (localStorage.getItem("login") !== "true") {
         e.preventDefault();
         localStorage.setItem("login", "false");
         userLogin.style.display = "none";
+        signOut.style.display = "none";
+        signIn.style.display = "block";
         navbar.style.display = "block";
         buyItems.style.display = "block";
-        signIn.style.display = "block";
-        signOut.style.display = "none";
     })
 }
 else {
     userLogin.style.display = "none";
     signIn.style.display = "none";
+    signOut.style.display = "block";
     navbar.style.display = "block";
     buyItems.style.display = "block";
-    signOut.style.display = "block";
 }
 
 signOut.addEventListener("click", function (e) {
     e.preventDefault();
     localStorage.removeItem("login");
-    userLogin.style.display = "block";
-    navbar.style.display = "none";
-    buyItems.style.display = "none";
-    signIn.style.display = "none";
-    signOut.style.display = "none";
+    signIn.click();
 })
 signIn.addEventListener("click", function (e) {
     e.preventDefault();
@@ -59,31 +61,32 @@ signIn.addEventListener("click", function (e) {
     signIn.style.display = "none";
     signOut.style.display = "none";
 })
-let cards = [];
-
-cards = readLocalStorage();
-addNewElement();
 
 addcartButton.forEach(item => {
     item.addEventListener("click", function (e) {
 
         let itemSrc = this.parentElement.parentElement.children[0].children[0].getAttribute("src");
         let itemName = this.parentElement.children[0].innerText;
-        let itemPrice = this.parentElement.children[1].innerText;
+        let unikalId = this.parentElement.children[1].innerText;
+        let itemPrice = this.parentElement.children[2].innerText;
         let itemCount = 1;
+        let total = Number(itemPrice.substring(0, itemPrice.length - 4)) * itemCount;
 
         let newCard = {
+            id: unikalId,
             src: itemSrc,
             name: itemName,
             price: itemPrice,
-            count: itemCount
+            count: itemCount,
+            total: total
         }
+
         if (cards === null)
             cards = [];
 
         if (isExistItem(newCard) !== undefined) {
             newCard.count = Number(isExistItem(newCard).count) + 1;
-
+            newCard.total = Number(isExistItem(newCard).total) + Number(isExistItem(newCard).price.substring(0, itemPrice.length - 4));
             cards[cards.indexOf(isExistItem(newCard))] = newCard;
             if (localStorage.getItem("login") !== "true")
                 sessionStorage.setItem("Basket", JSON.stringify(cards));
@@ -95,13 +98,8 @@ addcartButton.forEach(item => {
 
             return;
         }
-
         cards.unshift(newCard);
-        if (localStorage.getItem("login") !== "true")
-            sessionStorage.setItem("Basket", JSON.stringify(cards));
-        else
-            localStorage.setItem("Basket", JSON.stringify(cards));
-
+        writeLocalStorage();
         cards = readLocalStorage();
         addNewElement();
     })
@@ -113,6 +111,12 @@ function readLocalStorage() {
     else
         return JSON.parse(localStorage.getItem("Basket"));
 }
+function writeLocalStorage() {
+    if (localStorage.getItem("login") !== "true")
+        sessionStorage.setItem("Basket", JSON.stringify(cards));
+    else
+        localStorage.setItem("Basket", JSON.stringify(cards));
+}
 
 function addNewElement() {
     if (cards === null) {
@@ -123,26 +127,55 @@ function addNewElement() {
         let shoppingItems = document.createElement("li");
         let selectedItemImage = document.createElement("img");
         let CartContext = document.createElement("div");
+        let selectedItemID = document.createElement("p");
         let selectedItemName = document.createElement("p");
         let selectedItemPrice = document.createElement("p");
         let selectedItemCount = document.createElement("p");
-        let CartTotal = document.createElement("div");
+        let selectedItemTotal = document.createElement("p");
+        let closeX = document.createElement("span");
         selectedItemName.style.fontSize = "16px";
         selectedItemName.style.color = "red";
         shoppingItems.classList.add("d-flex", "justify-content-left", "align-items-center")
         CartContext.classList.add("cart-context", "d-flex", "flex-column", "justify-content-center", "align-items-start")
+        closeX.innerText = "x";
+        closeX.classList.add("close-x");
 
         selectedItemImage.setAttribute("src", element.src);
         selectedItemName.innerText = element.name;
+        selectedItemID.innerText = element.id;
         selectedItemPrice.innerText = "price: " + element.price;
         selectedItemCount.innerText = "count: " + element.count;
-
+        selectedItemTotal.innerText = "Total: " + element.total;
         shoppingItems.appendChild(selectedItemImage);
         CartContext.appendChild(selectedItemName);
+        CartContext.appendChild(selectedItemID);
         CartContext.appendChild(selectedItemPrice);
         CartContext.appendChild(selectedItemCount);
+        CartContext.appendChild(selectedItemTotal);
         shoppingItems.appendChild(CartContext);
+        shoppingItems.appendChild(closeX);
         myShoppingCartList.appendChild(shoppingItems);
+
+        closeX.addEventListener("click", function (e) {
+            cards = readLocalStorage();
+            if (cards !== null) {
+
+                for (const item of cards) {
+                    if (item.id === cards.find(value => value.id).id) {
+                        let index = cards.indexOf(item);
+                        cards.splice(index, 1);
+                        writeLocalStorage();
+                        resetAll();
+                        cards = readLocalStorage();
+                        addNewElement();
+                        return;
+                    }
+                }
+            }
+            else {
+                resetAll();
+            }
+        })
     });
 }
 
