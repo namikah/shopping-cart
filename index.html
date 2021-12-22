@@ -19,6 +19,7 @@
   </head>
   <body>
     <header>
+     <section id="navbar-header">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
           <button
@@ -62,12 +63,12 @@
               </li>
               <li class="nav-item text-end">
                 <a class="nav-link active" aria-current="page" href="#">
-                  Sign in
+                  Profile
                 </a>
                 <ul>
                   <li class="login-panel">
-                    <h6 class="width-username">with username</h6>
-                    <h6 class="as-guest">as guest</h6>
+                    <h6 class="sign-in">sign in</h6>
+                    <h6 class="sign-out">sign out</h6>
                   </li>
                 </ul>
               </li>
@@ -81,6 +82,7 @@
           </div>
         </div>
       </nav>
+     </section>
     </header>
     <section id="buy-items">
       <div class="container mt-5">
@@ -161,9 +163,14 @@
         </div>
       </div>
     </section>
-    <div class="user-login d-flex justify-content-md-between">
-
-    </div>
+   <section id="user-login">
+    <div class="mt-5 user-login-enter d-flex flex-column gap-3 justify-content-md-center align-items-center w-100">
+      <input class="username" type="text">
+      <input class="password" type="text">
+      <a href="#" class="btn btn-primary login-button">Enter</a>
+      <a href="#" class="as-quest">continue as quest</a>
+  </div>
+   </section>
     <script src="./js/index.js"></script>
   </body>
 </html>

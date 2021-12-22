@@ -1,3 +1,11 @@
+#navbar-header {
+  display: none;
+}
+
+#buy-items {
+  display: none;
+}
+
 #buy-items .card-image {
   cursor: pointer;
   overflow: hidden;
@@ -20,15 +28,32 @@
           transform: scale(1.1);
 }
 
+.sign-in {
+  cursor: pointer;
+}
+
+.sign-out {
+  cursor: pointer;
+}
+
 .login-panel {
-  display: none;
+  z-index: 1;
+  width: 100px;
+  right: 0;
+  top: 0;
+  padding: 20px;
+  position: absolute;
   list-style: none;
-  width: 100%;
   height: auto;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .login-panel:hover {
   display: block;
+  color: #0b5c0b;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 .login-panel .width-username {
@@ -59,15 +84,14 @@
   height: auto;
   max-height: 800px;
   overflow-y: auto;
-  border: 1px solid rgba(0, 0, 0, 0.24);
 }
 
 .nav-item-last .my-cart-list li {
   background-color: #fffefe;
+  border: 1px solid rgba(0, 0, 0, 0.096);
   padding: 10px;
   width: 100%;
   list-style: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.24);
 }
 
 .nav-item-last .my-cart-list li a {
@@ -94,6 +118,15 @@
 
 .nav-item-last:hover .my-cart-list {
   display: block;
+}
+
+.user-login {
+  display: none;
+  background-color: transparent;
+}
+
+.user-login input {
+  width: 200px;
 }
 
 @media only screen and (max-width: 992px) {
