@@ -1,0 +1,71 @@
+#buy-items .card-image {
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+#buy-items .card-image:hover {
+  -webkit-box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.26);
+          box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.26);
+}
+
+#buy-items .card-image img {
+  -webkit-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+}
+
+#buy-items .card-image img:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.nav-item-last {
+  position: relative;
+}
+
+.nav-item-last .my-cart-list {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  z-index: 1;
+  position: absolute;
+  -webkit-transform: translate(-40%);
+          transform: translate(-40%);
+  top: 100%;
+  padding-left: 0;
+  display: none;
+  width: 400px;
+  height: auto;
+  max-height: 800px;
+  overflow-y: auto;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+}
+
+.nav-item-last .my-cart-list li {
+  background-color: #fffefe;
+  padding: 10px;
+  width: 100%;
+  list-style: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+}
+
+.nav-item-last .my-cart-list li:hover img {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.nav-item-last .my-cart-list li img {
+  max-width: 100px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.nav-item-last .my-cart-list li .cart-context p {
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+.nav-item-last:hover .my-cart-list {
+  display: block;
+}
+/*# sourceMappingURL=style.css.map */
