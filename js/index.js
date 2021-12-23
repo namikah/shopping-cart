@@ -63,7 +63,8 @@ signIn.addEventListener("click", function (e) {
 
 addcartButton.forEach(item => {
     item.addEventListener("click", function (e) {
-
+        readAllItemCount();
+        
         let itemSrc = this.parentElement.parentElement.children[0].children[0].getAttribute("src");
         let itemName = this.parentElement.children[0].innerText;
         let unikalId = this.parentElement.children[1].innerText;
@@ -160,10 +161,14 @@ function addNewElement() {
 
         closeX.addEventListener("click", function (e) {
             readAllItemCount();
+            console.log(this);
+            console.log(this.parentElement);
+            console.log(this.parentElement.parentElement);
+            console.log();
             if (cards !== null) {
 
                 for (const item of cards) {
-                    if (item.id === cards.find(value => value.id).id) {
+                    if (item.id === this.parentElement.children[1].children[1].innerText) {
                         let index = cards.indexOf(item);
                         cards.splice(index, 1);
                         writeLocalStorage();
