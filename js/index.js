@@ -64,7 +64,7 @@ signIn.addEventListener("click", function (e) {
 addcartButton.forEach(item => {
     item.addEventListener("click", function (e) {
         readAllItemCount();
-        
+
         let itemSrc = this.parentElement.parentElement.children[0].children[0].getAttribute("src");
         let itemName = this.parentElement.children[0].innerText;
         let unikalId = this.parentElement.children[1].innerText;
@@ -159,10 +159,13 @@ function addNewElement() {
         shoppingItems.appendChild(closeX);
         myShoppingCartList.appendChild(shoppingItems);
 
+        selectedItemImage.addEventListener("click", function (e) {
+            window.location.href = "./basket.html";
+        })
+
         closeX.addEventListener("click", function (e) {
             readAllItemCount();
             if (cards !== null) {
-
                 for (const item of cards) {
                     if (item.id === this.parentElement.children[1].children[1].innerText) {
                         let index = cards.indexOf(item);
@@ -191,7 +194,7 @@ function resetAll() {
 function readAllItemCount() {
     cards = readLocalStorage();
     if (cards !== null) document.querySelector(".nav-item-last").setAttribute("data-id", cards.length)
-    else{document.querySelector(".nav-item-last").setAttribute("data-id", "0")}
+    else { document.querySelector(".nav-item-last").setAttribute("data-id", "0") }
 }
 function isExistItem(item) {
     let isItem = cards.find(value => value.name === item.name);
