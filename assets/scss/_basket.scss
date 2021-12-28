@@ -1,0 +1,47 @@
+#basket {
+    margin: 80px auto;
+	.basket-list {
+		.basket-item {
+            border: 1px solid rgba(107, 104, 104, 0.205);
+			.left-side {
+				.item-image {
+					width: 70px;
+					height: auto;
+					.img-fluid {
+						max-width: 100%;
+                        padding: 5px;
+					}
+				}
+                .item-content{
+                   p{
+                       margin: 0;
+                       padding: 2px;
+                   }
+                }
+			}
+            .item-count{
+                button{
+                    border: 1px solid rgb(107, 104, 104);
+                    width: 25px;
+                }
+                .counter{
+                    width: 50px;
+                    border: 1px solid rgb(107, 104, 104);
+                    margin-left: -5px;
+                    margin-right: -5px;
+                }
+            }
+            .item-price{
+                font-size: large;
+                align-items: center;
+                p{
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+            .x-close{
+                padding-right: 20px;
+            }
+		}
+	}
+}

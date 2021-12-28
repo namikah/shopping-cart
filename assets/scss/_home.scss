@@ -1,0 +1,143 @@
+#navbar-header {
+    display: none;
+  }
+  #buy-items {
+    display: none;
+    .card-image {
+      cursor: pointer;
+      overflow: hidden;
+      transition: 0.5s;
+      &:hover {
+        box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.26);
+      }
+      img {
+        transition: 1s ease-in-out;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+  .sign-in {
+    cursor: pointer;
+  }
+  .sign-out {
+    cursor: pointer;
+  }
+  .login-panel {
+    z-index: 1;
+    width: 100px;
+    right: 0;
+    top: 0;
+    padding: 20px;
+    position: absolute;
+    list-style: none;
+    height: auto;
+    transition: 0.5s;
+    &:hover {
+      display: block;
+      color: rgb(11, 92, 11);
+      transform: scale(1.05);
+    }
+    .width-username {
+      cursor: pointer;
+      font-size: 14px;
+      padding-left: 0;
+    }
+    .as-guest {
+      cursor: pointer;
+      font-size: 14px;
+    }
+  }
+  .nav-item-last {
+    position: relative;
+    &::after{
+      content: attr(data-id);
+      position: absolute;
+      text-align: center;
+      align-items: center;
+      width: 20px;
+      height: 20px;
+      right: -5px;
+      top: -5px;
+      border-radius: 100%;
+      background-color: red;
+      color: white;
+      font-size: 14px;
+    }
+    .my-cart-list {
+      transition: 0.5s;
+      z-index: 1;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      padding-left: 0;
+      display: none;
+      width: 300px;
+      height: auto;
+      max-height: 800px;
+      overflow-y: auto;
+      li {
+        background-color: rgb(255, 254, 254);
+        border: 1px solid rgba(0, 0, 0, 0.096);
+        padding: 10px;
+        width: 100%;
+        list-style: none;
+        position: relative;
+        .close-x{
+          font-size: 20px;
+          position: absolute;
+          right: 0;
+          top: 0;
+          color: red;
+          font-weight: 900;
+          padding-right: 10px;
+          cursor: pointer;
+        }
+        a {
+          width: 300px;
+        }
+        &:hover {
+          img {
+            transform: scale(1.1);
+          }
+        }
+        img {
+          max-width: 70px;
+          height: 100%;
+          cursor: pointer;
+        }
+        .cart-context {
+          p {
+            padding-left: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            color: rgb(13, 34, 116);
+          }
+        }
+      }
+    }
+    &:hover {
+      .my-cart-list {
+        display: block;
+      }
+    }
+  }
+  
+  .user-login {
+    display: none;
+    background-color: transparent;
+    input {
+      width: 200px;
+    }
+  }
+  @media only screen and (max-width: 992px) {
+    .cards {
+      flex-wrap: wrap;
+      .card {
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+  
