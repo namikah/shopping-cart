@@ -206,6 +206,7 @@
   border: 1px solid #6b6868;
   margin-left: -5px;
   margin-right: -5px;
+  text-align: center;
 }
 
 #basket .basket-list .basket-item .item-price {
@@ -218,9 +219,5 @@
 #basket .basket-list .basket-item .item-price p {
   margin: 0;
   padding: 0;
-}
-
-#basket .basket-list .basket-item .x-close {
-  padding-right: 20px;
 }
 /*# sourceMappingURL=style.css.map */

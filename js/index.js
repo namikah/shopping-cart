@@ -161,10 +161,6 @@ function addNewElement() {
 
         closeX.addEventListener("click", function (e) {
             readAllItemCount();
-            console.log(this);
-            console.log(this.parentElement);
-            console.log(this.parentElement.parentElement);
-            console.log();
             if (cards !== null) {
 
                 for (const item of cards) {
