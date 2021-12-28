@@ -19,9 +19,9 @@ function addNewItem() {
           </div>
         </div>
         <div class="item-count col-md-2 text-center">
-          <button>-</button>
-          <input value="${item.count}" type="text" class="counter">
-          <button>+</button>
+          <button class="decrement-count">-</button>
+          <input value="${item.count}" type="text" class="counter" data-id="${item.id}">
+          <button class="increment-count">+</button>
         </div>
         <div class="item-price col-md-2 text-center">
           <p>${item.total} AZN</p>
@@ -31,17 +31,30 @@ function addNewItem() {
         </a>
       </li>`)
 
-      $(".x-close").click(function (e) {
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i].id === this.getAttribute("data-id")) {
-                arr.splice(i, 1);
-                resetAllItem();
-                writeLocalStorage();
-                addNewItem();
-            }
-        }
-    
-    })
+            $(".x-close").click(function (e) {
+                for (let i = 0; i < arr.length; i++) {
+                    if (arr[i].id === this.getAttribute("data-id")) {
+                        arr.splice(i, 1);
+                        resetAllItem();
+                        writeLocalStorage();
+                        arr = readLocalStorage();
+                        addNewItem();
+                    }
+                }
+
+            })
+            $(".increment-count").click(function (e) {
+                // for (let i = 0; i < arr.length; i++) {
+                //     if (arr[i].id === this.previousElementSibling.getAttribute("data-id")) {
+                //         arr[i].count = Number(arr[i].count) + 1;
+                //         writeLocalStorage();
+                //         resetAllItem();
+                //         arr = readLocalStorage();
+                //         addNewItem();
+                //     }
+                // }
+
+            })
         }
     }
 }
