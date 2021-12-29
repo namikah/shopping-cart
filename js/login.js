@@ -9,6 +9,7 @@ let btnRegister = document.querySelector(".register-button");
 let asGuest = document.querySelector(".as-guest");
 
 let users = readLocalStorage();
+if(!users) users = [];
 
 if (localStorage.getItem("login") === "false" || localStorage.getItem("login") === null) {
     btnEnter.addEventListener("click", function (e) {

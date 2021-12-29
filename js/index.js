@@ -6,6 +6,7 @@ let myShoppingCartList = document.querySelector(".my-cart-list");
 let addcartButton = document.querySelectorAll(".add-cart-button");
 
 let cards = readLocalStorage();
+if(!cards) cards = [];
 readAllItemCount();
 addNewElement();
 
@@ -66,10 +67,10 @@ addcartButton.forEach(item => {
             newCard.count = Number(isExistItem(newCard).count) + 1;
             newCard.total = Number(isExistItem(newCard).total) + Number(isExistItem(newCard).price.substring(0, itemPrice.length - 4));
             cards[cards.indexOf(isExistItem(newCard))] = newCard;
-            if (localStorage.getItem("login") !== "true")
+            if (localStorage.getItem("login") === "false")
                 sessionStorage.setItem("Basket", JSON.stringify(cards));
             else
-                localStorage.setItem("Basket", JSON.stringify(cards));
+                localStorage.setItem(localStorage.getItem("login"), JSON.stringify(cards));
             resetAll();
             readAllItemCount();
             addNewElement();

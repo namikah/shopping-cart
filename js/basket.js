@@ -1,4 +1,5 @@
 let arr = readLocalStorage();
+if(!arr) arr = [];
 
 if (arr.length > 0) {
   addNewItem();
@@ -90,17 +91,17 @@ function addNewItem() {
 }
 //read local storage and return array
 function readLocalStorage() {
-  if (localStorage.getItem("login") !== "true")
+  if (localStorage.getItem("login") === "false")
     return JSON.parse(sessionStorage.getItem("Basket"));
   else
-    return JSON.parse(localStorage.getItem("Basket"));
+    return JSON.parse(localStorage.getItem(localStorage.getItem("login")));
 }
 //write new array to local storage
 function writeLocalStorage() {
-  if (localStorage.getItem("login") !== "true")
+  if (localStorage.getItem("login") === "false")
     sessionStorage.setItem("Basket", JSON.stringify(arr));
   else
-    localStorage.setItem("Basket", JSON.stringify(arr));
+    localStorage.setItem(localStorage.getItem("login"), JSON.stringify(arr));
 }
 //empty all item from basket
 function resetAllItem() {
