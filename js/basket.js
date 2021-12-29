@@ -22,7 +22,7 @@ function addNewItem() {
           </div>
           <div class="item-count col-md-2 text-center">
             <button class="decrement-count">-</button>
-            <input value="${item.count}" type="text" class="counter" data-id="${item.id}">
+            <input value="${item.count}" type="number" class="counter" data-id="${item.id}">
             <button class="increment-count">+</button>
           </div>
           <div class="item-price col-md-2 text-center">
