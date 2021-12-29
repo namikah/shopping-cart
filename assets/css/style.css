@@ -1,29 +1,26 @@
-#navbar-header {
-  display: none;
+#buy-items .cards .card {
+  width: 300px;
+  height: 550px;
 }
 
-#buy-items {
-  display: none;
-}
-
-#buy-items .card-image {
+#buy-items .cards .card .card-image {
   cursor: pointer;
   overflow: hidden;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
-#buy-items .card-image:hover {
+#buy-items .cards .card .card-image:hover {
   -webkit-box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.26);
           box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.26);
 }
 
-#buy-items .card-image img {
+#buy-items .cards .card .card-image img {
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
 }
 
-#buy-items .card-image img:hover {
+#buy-items .cards .card .card-image img:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
@@ -34,6 +31,7 @@
 
 .sign-out {
   cursor: pointer;
+  display: none;
 }
 
 .login-panel {
@@ -49,11 +47,8 @@
   transition: 0.5s;
 }
 
-.login-panel:hover {
-  display: block;
-  color: #0b5c0b;
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
+.login-panel:hover h6 {
+  color: rgba(255, 0, 0, 0.473);
 }
 
 .login-panel .width-username {
@@ -99,7 +94,7 @@
   display: none;
   width: 300px;
   height: auto;
-  max-height: 800px;
+  max-height: 550px;
   overflow-y: auto;
 }
 
@@ -147,15 +142,6 @@
 
 .nav-item-last:hover .my-cart-list {
   display: block;
-}
-
-.user-login {
-  display: none;
-  background-color: transparent;
-}
-
-.user-login input {
-  width: 200px;
 }
 
 @media only screen and (max-width: 992px) {
@@ -231,9 +217,13 @@
 }
 
 #basket .basket-list .basket-item .item-close .x-close {
-  font-size: 20px;
+  font-size: 16px;
   cursor: pointer;
   padding: 10px;
   color: red;
+}
+
+.user-login input {
+  width: 200px;
 }
 /*# sourceMappingURL=style.css.map */

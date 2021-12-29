@@ -1,64 +1,33 @@
-let userLogin = document.querySelector("#user-login");
-let username = document.querySelector(".username");
-let password = document.querySelector(".password");
-let btnEnter = document.querySelector(".login-button");
 let signIn = document.querySelector(".sign-in");
 let signOut = document.querySelector(".sign-out");
-let asGuest = document.querySelector(".as-quest");
 let buyItems = document.querySelector("#buy-items");
 let navbar = document.querySelector("#navbar-header");
 let myShoppingCartList = document.querySelector(".my-cart-list");
 let addcartButton = document.querySelectorAll(".add-cart-button");
 
-let cards = [];
+let cards = readLocalStorage();
 readAllItemCount();
 addNewElement();
 
-if (localStorage.getItem("login") !== "true") {
-    btnEnter.addEventListener("click", function (e) {
-        e.preventDefault();
-        if (username.value === "admin" && password.value === "123") {
-            localStorage.setItem("login", "true");
-            userLogin.style.display = "none";
-            signIn.style.display = "none";
-            signOut.style.display = "block";
-            navbar.style.display = "block";
-            buyItems.style.display = "block";
-        }
-        else {
-            return;
-        }
-    })
-    asGuest.addEventListener("click", function (e) {
-        e.preventDefault();
-        localStorage.setItem("login", "false");
-        userLogin.style.display = "none";
-        signOut.style.display = "none";
-        signIn.style.display = "block";
-        navbar.style.display = "block";
-        buyItems.style.display = "block";
-    })
-}
-else {
-    userLogin.style.display = "none";
+if (localStorage.getItem("login") === "true") {
     signIn.style.display = "none";
     signOut.style.display = "block";
-    navbar.style.display = "block";
-    buyItems.style.display = "block";
+}
+else{
+    signOut.style.display = "none";
+    signIn.style.display = "block";
 }
 
 signOut.addEventListener("click", function (e) {
-    e.preventDefault();
     localStorage.removeItem("login");
-    signIn.click();
+    window.location.href = "./login.html";
+    signOut.style.display = "none";
+    signIn.style.display = "block";
 })
 signIn.addEventListener("click", function (e) {
-    e.preventDefault();
-    userLogin.style.display = "block";
-    navbar.style.display = "none";
-    buyItems.style.display = "none";
+    window.location.href = "./login.html";
     signIn.style.display = "none";
-    signOut.style.display = "none";
+    signOut.style.display = "block";
 })
 
 addcartButton.forEach(item => {
@@ -71,9 +40,6 @@ addcartButton.forEach(item => {
         let itemPrice = this.parentElement.children[2].innerText;
         let itemCount = 1;
         let total = Number(itemPrice.substring(0, itemPrice.length - 4)) * itemCount;
-
-        // let allTotal = Number(document.querySelector(".nav-item-last").getAttribute("data-id")) + 1;
-        // document.querySelector(".nav-item-last").setAttribute("data-id", allTotal);
 
         let newCard = {
             id: unikalId,
@@ -133,7 +99,6 @@ function addNewElement() {
         let selectedItemID = document.createElement("p");
         let selectedItemName = document.createElement("p");
         let selectedItemPrice = document.createElement("p");
-        // let selectedItemCount = document.createElement("p");
         let selectedItemTotal = document.createElement("p");
         let closeX = document.createElement("span");
         selectedItemName.style.fontSize = "16px";
@@ -147,13 +112,11 @@ function addNewElement() {
         selectedItemName.innerText = element.name;
         selectedItemID.innerText = element.id;
         selectedItemPrice.innerText = "price: " + element.count + " x " + element.price;
-        // selectedItemCount.innerText = "count: " + element.count + " pieces";
         selectedItemTotal.innerText = "Total: " + element.total + " AZN";
         shoppingItems.appendChild(selectedItemImage);
         CartContext.appendChild(selectedItemName);
         CartContext.appendChild(selectedItemID);
         CartContext.appendChild(selectedItemPrice);
-        // CartContext.appendChild(selectedItemCount);
         CartContext.appendChild(selectedItemTotal);
         shoppingItems.appendChild(CartContext);
         shoppingItems.appendChild(closeX);
