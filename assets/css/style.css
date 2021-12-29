@@ -1,6 +1,5 @@
 #buy-items .cards .card {
-  width: 300px;
-  height: 550px;
+  padding: 10px;
 }
 
 #buy-items .cards .card .card-image {
@@ -145,6 +144,22 @@
   display: block;
 }
 
+.scroll-up {
+  scroll-behavior: smooth;
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-size: 50px;
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.scroll-up:hover {
+  color: rgba(0, 0, 255, 0.541);
+}
+
 @media only screen and (max-width: 992px) {
   .cards {
     -ms-flex-wrap: wrap;
@@ -222,6 +237,22 @@
   cursor: pointer;
   padding: 10px;
   color: red;
+}
+
+.scroll-up {
+  scroll-behavior: smooth;
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-size: 50px;
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.scroll-up:hover {
+  color: rgba(0, 0, 255, 0.541);
 }
 
 input::-webkit-outer-spin-button,

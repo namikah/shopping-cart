@@ -5,8 +5,9 @@ let navbar = document.querySelector("#navbar-header");
 let myShoppingCartList = document.querySelector(".my-cart-list");
 let addcartButton = document.querySelectorAll(".add-cart-button");
 
+
 let cards = readLocalStorage();
-if(!cards) cards = [];
+if (!cards) cards = [];
 readAllItemCount();
 addNewElement();
 
@@ -42,15 +43,15 @@ signIn.addEventListener("click", function (e) {
 
 addcartButton.forEach(item => {
     item.addEventListener("click", function (e) {
+        e.preventDefault();
         readAllItemCount();
-
         let itemSrc = this.parentElement.parentElement.children[0].children[0].getAttribute("src");
         let itemName = this.parentElement.children[0].innerText;
         let unikalId = this.parentElement.children[1].innerText;
         let itemPrice = this.parentElement.children[2].innerText;
         let itemCount = 1;
         let total = Number(itemPrice.substring(0, itemPrice.length - 4)) * itemCount;
-
+        
         let newCard = {
             id: unikalId,
             src: itemSrc,
@@ -59,17 +60,17 @@ addcartButton.forEach(item => {
             count: itemCount,
             total: total
         }
-
+        
         if (cards === null)
-            cards = [];
-
+        cards = [];
+        
         if (isExistItem(newCard) !== undefined) {
             newCard.count = Number(isExistItem(newCard).count) + 1;
             newCard.total = Number(isExistItem(newCard).total) + Number(isExistItem(newCard).price.substring(0, itemPrice.length - 4));
             cards[cards.indexOf(isExistItem(newCard))] = newCard;
             if (localStorage.getItem("login") === "false")
                 sessionStorage.setItem("Basket", JSON.stringify(cards));
-            else
+                else
                 localStorage.setItem(localStorage.getItem("login"), JSON.stringify(cards));
             resetAll();
             readAllItemCount();
@@ -86,15 +87,15 @@ addcartButton.forEach(item => {
 
 function readLocalStorage() {
     if (localStorage.getItem("login") === "false")
-        return JSON.parse(sessionStorage.getItem("Basket"));
+    return JSON.parse(sessionStorage.getItem("Basket"));
     else
-        return JSON.parse(localStorage.getItem(localStorage.getItem("login")));
+    return JSON.parse(localStorage.getItem(localStorage.getItem("login")));
 }
 function writeLocalStorage() {
     if (localStorage.getItem("login") === "false")
-        sessionStorage.setItem("Basket", JSON.stringify(cards));
+    sessionStorage.setItem("Basket", JSON.stringify(cards));
     else
-        localStorage.setItem(localStorage.getItem("login"), JSON.stringify(cards));
+    localStorage.setItem(localStorage.getItem("login"), JSON.stringify(cards));
 }
 
 function addNewElement() {
@@ -131,7 +132,7 @@ function addNewElement() {
         shoppingItems.appendChild(CartContext);
         shoppingItems.appendChild(closeX);
         myShoppingCartList.appendChild(shoppingItems);
-
+        
         selectedItemImage.addEventListener("click", function (e) {
             window.location.href = "./basket.html";
         })
@@ -173,3 +174,18 @@ function isExistItem(item) {
     let isItem = cards.find(value => value.name === item.name);
     return isItem;
 }
+//window scroll to Top
+$(window).scroll(function () {
+    let height = $(window).scrollTop();
+    console.log(height);
+    if (height > 250) {
+        $(".scroll-up").css({ display: 'block' })
+
+    }
+    else {
+        $(".scroll-up").css({ display: 'none' })
+    }
+})
+$(".scroll-up").click(function () {
+    window.scrollTo(0, 0)
+})

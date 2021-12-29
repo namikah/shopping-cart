@@ -107,3 +107,18 @@ function writeLocalStorage() {
 function resetAllItem() {
   $(".basket-list").empty();
 }
+//window scroll to Top
+$(window).scroll(function () {
+  let height = $(window).scrollTop();
+  console.log(height);
+  if (height > 250) {
+      $(".scroll-up").css({ display: 'block' })
+
+  }
+  else {
+      $(".scroll-up").css({ display: 'none' })
+  }
+})
+$(".scroll-up").click(function () {
+  window.scrollTo(0, 0)
+})
