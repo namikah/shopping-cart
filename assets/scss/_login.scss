@@ -1,5 +1,14 @@
-.user-login {
+#user-login {
 	input {
 		width: 200px;
 	}
+	.as-guest{
+		text-decoration: none;
+	}
+	.register{
+		text-decoration: none;
+	}
+}
+#user-register{
+display: none;
 }

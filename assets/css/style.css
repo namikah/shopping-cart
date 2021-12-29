@@ -60,6 +60,7 @@
 .login-panel .as-guest {
   cursor: pointer;
   font-size: 14px;
+  text-decoration: none;
 }
 
 .nav-item-last {
@@ -223,7 +224,19 @@
   color: red;
 }
 
-.user-login input {
+#user-login input {
   width: 200px;
+}
+
+#user-login .as-guest {
+  text-decoration: none;
+}
+
+#user-login .register {
+  text-decoration: none;
+}
+
+#user-register {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */

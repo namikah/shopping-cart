@@ -9,25 +9,34 @@ let cards = readLocalStorage();
 readAllItemCount();
 addNewElement();
 
-if (localStorage.getItem("login") === "true") {
+if (localStorage.getItem("login") !== "false" && localStorage.getItem("login") !== null) {
     signIn.style.display = "none";
-    signOut.style.display = "block";
+    signIn.style.transition = "1s";
+    setTimeout(() => {
+        signOut.style.display = "block";
+    }, 500);
 }
-else{
+else {
     signOut.style.display = "none";
-    signIn.style.display = "block";
+    setTimeout(() => {
+        signIn.style.display = "block";
+    }, 500);
 }
 
 signOut.addEventListener("click", function (e) {
     localStorage.removeItem("login");
     window.location.href = "./login.html";
     signOut.style.display = "none";
-    signIn.style.display = "block";
+    setTimeout(() => {
+        signIn.style.display = "block";
+    }, 500);
 })
 signIn.addEventListener("click", function (e) {
     window.location.href = "./login.html";
     signIn.style.display = "none";
-    signOut.style.display = "block";
+    setTimeout(() => {
+        signOut.style.display = "block";
+    }, 500);
 })
 
 addcartButton.forEach(item => {
@@ -75,16 +84,16 @@ addcartButton.forEach(item => {
 });
 
 function readLocalStorage() {
-    if (localStorage.getItem("login") !== "true")
+    if (localStorage.getItem("login") === "false")
         return JSON.parse(sessionStorage.getItem("Basket"));
     else
-        return JSON.parse(localStorage.getItem("Basket"));
+        return JSON.parse(localStorage.getItem(localStorage.getItem("login")));
 }
 function writeLocalStorage() {
-    if (localStorage.getItem("login") !== "true")
+    if (localStorage.getItem("login") === "false")
         sessionStorage.setItem("Basket", JSON.stringify(cards));
     else
-        localStorage.setItem("Basket", JSON.stringify(cards));
+        localStorage.setItem(localStorage.getItem("login"), JSON.stringify(cards));
 }
 
 function addNewElement() {
